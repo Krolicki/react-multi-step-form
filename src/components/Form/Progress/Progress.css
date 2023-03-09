@@ -2,6 +2,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 70px;
+    padding-inline: 40px;
 }
 .progress-item{
     position: relative;
@@ -14,7 +16,7 @@
     left: 60px;
     width: calc(100% - 80px);
     height: 2px;
-    background-color: rgb(228, 228, 228);
+    background-color: var(--grey);
 }
 .progress-item:last-child{
     flex: none;
@@ -23,7 +25,7 @@
     display: none;
 }
 .progress-item.completed::after, .progress-item.completed .progress-number{
-    background-color: rgb(56, 171, 85);
+    background-color: var(--green);
     color: white;
 }
 .progress-number{
@@ -33,12 +35,12 @@
     position: relative;
     width: 40px;
     height: 40px;
-    background-color: rgb(228, 228, 228);
+    background-color: var(--grey);
     color: grey;
     border-radius: 50%;
 }
 .progress-item.active .progress-number{
-    background-color: rgb(84, 68, 255);
+    background-color: var(--violet);
     color: white;
 }
 [item-text]::after{
