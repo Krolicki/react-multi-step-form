@@ -24,13 +24,13 @@ export const Step1 = () => {
                 name='password'
                 placeholder=' '
             />
-            <label for="mail">Password</label>
+            <label for="password">Password</label>
             <input
                 type='password'
                 name='confirmPass'
                 placeholder=' '
             />
-            <label for="mail">Confirm Password</label>
+            <label for="confirmPass">Confirm Password</label>
             <span className='step-buttons'>
                 <button type="button" >Next step</button>
             </span>

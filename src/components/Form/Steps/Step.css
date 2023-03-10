@@ -36,6 +36,7 @@
             user-select: none;
     pointer-events: none;
     transition: .2s;
+    color: rgb(96, 96, 96);
 }
 
 .step input:focus + label, 
@@ -67,4 +68,38 @@
 .step-buttons button:hover{
     box-shadow: 0 3px 3px 0 black;
     transform: translateY(-4px);
+}
+.step-birth-date{
+    display: block;
+    margin-top: 30px;
+}
+.step-birth-date p{
+    font-size: 1.1rem;
+}
+.step-birth-date span{
+    display: grid;
+    grid-template-columns: 20% 0 20% 0 40% 0;
+    grid-template-rows: 1fr;
+    grid-column-gap: 5%;
+    grid-row-gap: 0px;
+}
+.step-birth-date span input{
+    width: 100%;
+    margin-top: 20px;
+}
+.step-birth-date label{
+    transform: translate(-4.3rem, 2rem);
+}
+.step-birth-date label[for="year"]{
+    transform: translate(-7.8rem, 2rem);
+}
+.step-birth-date span input:focus + label, 
+.step-birth-date span input:not(:placeholder-shown) + label{
+    transform: translate(-4.3rem, 1rem);
+    font-size: .8rem;
+}
+.step-birth-date span input[name="year"]:focus + label, 
+.step-birth-date span input[name="year"]:not(:placeholder-shown) + label{
+    transform: translate(-7.8rem, 1rem);
+    font-size: .8rem;
 }
