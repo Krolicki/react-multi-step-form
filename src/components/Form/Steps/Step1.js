@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './Step.css'
 
-export const Step1 = ({data,setData}) => {
+export const Step1 = ({data, setData, setCurrentStep}) => {
 
     const emailRef = useRef()
 
@@ -27,16 +27,24 @@ export const Step1 = ({data,setData}) => {
                 type='password'
                 name='password'
                 placeholder=' '
+                value={data.account.password}
+                onChange={(e)=>{
+                    setData((prevData)=> {return{...prevData, account: {...prevData.account, password: e.target.value}}})
+                }}
             />
             <label htmlFor="password">Password</label>
             <input
                 type='password'
                 name='confirmPass'
                 placeholder=' '
+                value={data.account.confirmPassword}
+                onChange={(e)=>{
+                    setData((prevData)=> {return{...prevData, account: {...prevData.account, confirmPassword: e.target.value}}})
+                }}
             />
             <label htmlFor="confirmPass">Confirm Password</label>
             <span className='step-buttons'>
-                <button type="button" >Next step</button>
+                <button type="button" onClick={()=>setCurrentStep(2)}>Next step</button>
             </span>
         </div>
     )

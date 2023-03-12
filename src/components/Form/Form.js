@@ -6,7 +6,7 @@ import { Step2 } from './Steps/Step2'
 import { Step3 } from './Steps/Step3'
 
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(1)
+    const [currentStep, setCurrentStep] = useState(2)
     const [data, setData] = useState({
         account:{
             email: "",
@@ -17,7 +17,9 @@ export const Form = () => {
             nickname: "",
             name: "",
             lastname: "",
-            birth: null
+            birthDay: "",
+            birthMonth: "",
+            birthYear: ""
         },
         agreements:{
             terms: false,
@@ -33,6 +35,7 @@ export const Form = () => {
                 <Step1 
                     data={data}
                     setData={setData}
+                    setCurrentStep={setCurrentStep}
                 />
             )
         else if(currentStep === 2)
@@ -40,6 +43,7 @@ export const Form = () => {
                 <Step2 
                     data={data}
                     setData={setData}
+                    setCurrentStep={setCurrentStep}
                 />
             )
         else if(currentStep === 3)
@@ -47,6 +51,7 @@ export const Form = () => {
                 <Step3 
                     data={data}
                     setData={setData}
+                    setCurrentStep={setCurrentStep}
                 />
             )
         else
@@ -54,6 +59,7 @@ export const Form = () => {
                 <Step1 
                     data={data}
                     setData={setData}
+                    setCurrentStep={setCurrentStep}
                 />
             )
     }

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './Step.css'
 
-export const Step3 = () => {
+export const Step3 = ({data, setData, setCurrentStep}) => {
     const termsRef = useRef()
 
     useEffect(()=>{
@@ -34,7 +34,7 @@ export const Step3 = () => {
                 <label htmlFor='marketing-consent'>(optional) I consent to the processing of my personal data for marketing purposes</label>
             </span>
             <span className='step-buttons'>
-                    <button type="button" >Previous step</button>
+                    <button type="button" onClick={()=>setCurrentStep(2)}>Previous step</button>
                     <button type="button" >Submit</button>
             </span>
         </div>
