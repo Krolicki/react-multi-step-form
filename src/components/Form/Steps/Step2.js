@@ -18,8 +18,10 @@ export const Step2 = () => {
             return
         }
         if(day < 1){
-            setDay(1)
-            return
+            if(!day.length === 1){
+                setDay(1)
+                return
+            }
         }
         let maxDays
         if(month !== "" && month !== null){
@@ -31,7 +33,7 @@ export const Step2 = () => {
             }
         }
         else if(year !== "" && year !== null){
-            maxDays = getDays(year, new Date().getMonth())
+            maxDays = getDays(year, new Date().getMonth() + 1)
         }
         else{
             maxDays = getDays(new Date().getFullYear(), new Date().getMonth() + 1)
@@ -51,8 +53,10 @@ export const Step2 = () => {
             return
         }
         if(month < 1){
-            setMonth(1)
-            return
+            if(!month.length === 1){
+                setMonth(1)
+                return
+            }
         }
         if(month > 12){
             setMonth(12)
