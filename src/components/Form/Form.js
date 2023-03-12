@@ -6,17 +6,56 @@ import { Step2 } from './Steps/Step2'
 import { Step3 } from './Steps/Step3'
 
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(3)
+    const [currentStep, setCurrentStep] = useState(1)
+    const [data, setData] = useState({
+        account:{
+            email: "",
+            password: "",
+            confirmPassword: ""
+        },
+        personal:{
+            nickname: "",
+            name: "",
+            lastname: "",
+            birth: null
+        },
+        agreements:{
+            terms: false,
+            personalData: false,
+            marketing: false
+        }
+
+    })
 
     const currentStepPage = () => {
         if(currentStep === 1)
-            return <Step1 />
+            return (
+                <Step1 
+                    data={data}
+                    setData={setData}
+                />
+            )
         else if(currentStep === 2)
-            return <Step2 />
+            return (
+                <Step2 
+                    data={data}
+                    setData={setData}
+                />
+            )
         else if(currentStep === 3)
-            return <Step3 />
+            return (
+                <Step3 
+                    data={data}
+                    setData={setData}
+                />
+            )
         else
-            return <Step1 />
+            return (
+                <Step1 
+                    data={data}
+                    setData={setData}
+                />
+            )
     }
 
     return(

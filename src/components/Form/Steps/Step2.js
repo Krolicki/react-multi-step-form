@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Step.css'
 
 export const Step2 = () => {
@@ -6,9 +6,15 @@ export const Step2 = () => {
     const [month, setMonth] = useState(null)
     const [year, setYear] = useState(null)
 
+    const nicknameRef = useRef()
+
     const getDays = (year, month) => {
         return new Date(year, month, 0).getDate()
     }
+
+    useEffect(()=>{
+        nicknameRef.current.focus()
+    },[])
 
     useEffect(()=>{
         if(day === null || day === "")
@@ -94,6 +100,7 @@ export const Step2 = () => {
                 type='text'
                 name='nickname'
                 placeholder=' '
+                ref={nicknameRef}
             />
             <label htmlFor="nickname">Nickname</label>
             <input

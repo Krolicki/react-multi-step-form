@@ -1,6 +1,13 @@
+import { useEffect, useRef } from 'react'
 import './Step.css'
 
 export const Step3 = () => {
+    const termsRef = useRef()
+
+    useEffect(()=>{
+        termsRef.current.focus()
+    },[])
+
     return(
         <div className='step'>
             <span className='step-title'>Agreements</span>
@@ -8,6 +15,7 @@ export const Step3 = () => {
                 <input
                     type='checkbox'
                     name='terms-consent'
+                    ref={termsRef}
                 />
                 <label htmlFor='terms-consent'>I have read and accept the terms of service</label>
             </span>

@@ -132,6 +132,7 @@ input[type=checkbox]{
     transition: background .3s;
 }
 input[type=checkbox]:focus{
+    background-color: gray;
     border: none;
 }
 input[type=checkbox]:after{
@@ -148,6 +149,9 @@ input[type=checkbox]:after{
 }
 input[type=checkbox]:checked{
     background-color: var(--violet);
+}
+input[type=checkbox]:checked:focus{
+background-color: rgb(51, 190, 255);               
 }
 input[type=checkbox]:checked::after{
     left: 70%;
