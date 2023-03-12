@@ -111,3 +111,52 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.step-checkbox{
+    display: flex;
+    margin-top: 30px;
+    gap:10px;
+    flex: 50px 1fr;
+    align-items: flex-start;
+}
+input[type=checkbox]{
+    -webkit-appearance: none;
+    margin-top: 4px;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: var(--grey);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: background .3s;
+}
+input[type=checkbox]:focus{
+    border: none;
+}
+input[type=checkbox]:after{
+    content: '';
+    position: absolute;
+    top:50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    transition: left .3s;
+}
+input[type=checkbox]:checked{
+    background-color: var(--violet);
+}
+input[type=checkbox]:checked::after{
+    left: 70%;
+}
+.step input[type=checkbox]:focus + label, .step input[type=checkbox]:not(:placeholder-shown) + label {
+    transform: unset;
+}
+input[type=checkbox] + label{
+    transform: unset;
+    line-height: unset;
+    max-width: calc(100% - 60px);
+}
