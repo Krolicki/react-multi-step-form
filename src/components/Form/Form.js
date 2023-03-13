@@ -6,7 +6,7 @@ import { Step2 } from './Steps/Step2'
 import { Step3 } from './Steps/Step3'
 
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(2)
+    const [currentStep, setCurrentStep] = useState(3)
     const [data, setData] = useState({
         account:{
             email: "",

@@ -57,15 +57,19 @@
     padding: 10px;
     font-size: 1rem;
     color: white;
-    background-color: var(--violet);
+    background-color: var(--green);
     border: none;
     outline: none;
+    cursor: pointer;
     border-radius: 4px;
     transition: .2s;
-    cursor: pointer;
 }
-.step-buttons button:focus,
-.step-buttons button:hover{
+.step-buttons button:disabled{  
+    background-color: var(--violet);
+    cursor:not-allowed;
+}
+.step-buttons button:focus:not(:disabled),
+.step-buttons button:hover:not(:disabled){
     box-shadow: 0 3px 3px 0 black;
     transform: translateY(-4px);
 }
@@ -163,4 +167,11 @@ input[type=checkbox] + label{
     transform: unset;
     line-height: unset;
     max-width: calc(100% - 60px);
+}
+
+.invalid-input{
+    border-bottom: 2px solid red !important;
+}
+.valid-input{
+    border-bottom: 2px solid var(--green) !important;
 }
