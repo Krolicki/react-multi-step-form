@@ -15,10 +15,6 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
         emailRef.current.focus()            
     },[])
 
-    const validateFields = () => {
-        
-    }
-
     useEffect(()=>{
         const res = EMAILREGEX.test(data.account.email)
         setValidEmail(res)

@@ -68,6 +68,9 @@
     background-color: var(--violet);
     cursor:not-allowed;
 }
+.step-previous-button{
+    background-color: grey !important;
+}
 .step-buttons button:focus:not(:disabled),
 .step-buttons button:hover:not(:disabled){
     box-shadow: 0 3px 3px 0 black;

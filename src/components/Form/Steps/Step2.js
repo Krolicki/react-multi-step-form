@@ -1,7 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Step.css'
 
 export const Step2 = ({data, setData, setCurrentStep}) => {
+    const [validNick, setValidNick] = useState(false)
+    const [validYear, setValidYear] = useState(false)
+
     const nicknameRef = useRef()
 
     const getDays = (year, month) => {
@@ -72,7 +75,12 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     },[data.personal.birthMonth])
 
     useEffect(()=>{
-        let year = data.personal.birthYear
+        const year = data.personal.birthYear
+        const currentYear = new Date().getFullYear()
+        if(year <  (currentYear - 123))
+            setValidYear(false)
+        else
+            setValidYear(true)
         if(year === null || year === ""){
             return
         }  
@@ -80,12 +88,20 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthYear: ""}}})
             return
         }
-        let currentYear = new Date().getFullYear()
+        
         if(year < 1 || year >= currentYear){
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthYear: currentYear}}})
             return
         }
     },[data.personal.birthYear])
+
+    useEffect(()=>{
+        //check if this nick is available
+        if(data.personal.nickname.length >= 4)
+            setValidNick(true)
+        else
+            setValidNick(false)
+    },[data.personal.nickname])
 
     return(
         <div className='step'>
@@ -95,6 +111,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 name='nickname'
                 placeholder=' '
                 ref={nicknameRef}
+                required={true}
+                className={data.personal.nickname !== "" ? (!validNick ? "invalid-input" : "valid-input") : ""}
                 value={data.personal.nickname}
                 onChange={(e)=>{
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, nickname: e.target.value}}})
@@ -105,6 +123,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 type='text'
                 name='name'
                 placeholder=' '
+                required={true}
+                className={data.personal.name !== "" ? "valid-input" : ""}
                 value={data.personal.name}
                 onChange={(e)=>{
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, name: e.target.value}}})
@@ -115,6 +135,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 type='text'
                 name='lastname'
                 placeholder=' '
+                required={true}
+                className={data.personal.lastname !== "" ? "valid-input" : ""}
                 value={data.personal.lastname}
                 onChange={(e)=>{
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, lastname: e.target.value}}})
@@ -130,6 +152,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         min='1'
                         max='31'
                         placeholder=' '
+                        required={true}
+                        className={data.personal.birthDay !== "" ? "valid-input" : ""}
                         value={data.personal.birthDay}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
@@ -146,6 +170,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         min='1'
                         max='12'
                         placeholder=' '
+                        required={true}
+                        className={data.personal.birthMonth !== "" ? "valid-input" : ""}
                         value={data.personal.birthMonth}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
@@ -160,7 +186,9 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         type='number'
                         name='year'
                         placeholder=' '
+                        required={true}
                         value={data.personal.birthYear}
+                        className={data.personal.birthYear !== "" ? (!validYear ? "invalid-input" : "valid-input") : ""}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
                                 e.preventDefault()    
@@ -173,8 +201,16 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 </span>
             </span>
             <span className='step-buttons'>
-                <button type="button" onClick={()=>setCurrentStep(1)}>Previous step</button>
-                <button type="button" onClick={()=>setCurrentStep(3)}>Next step</button>
+                <button type="button" onClick={()=>setCurrentStep(1)} className="step-previous-button">Previous step</button>
+                <button 
+                    type="button" 
+                    disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear) 
+                        ? true : false
+                    }
+                    onClick={()=>setCurrentStep(3)}
+                >
+                    Next step
+                </button>
             </span>
         </div>
     )

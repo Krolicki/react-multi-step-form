@@ -52,8 +52,13 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                 <label htmlFor='marketing-consent'>(optional) I consent to the processing of my personal data for marketing purposes</label>
             </span>
             <span className='step-buttons'>
-                    <button type="button" onClick={()=>setCurrentStep(2)}>Previous step</button>
-                    <button type="button" >Submit</button>
+                    <button type="button" onClick={()=>setCurrentStep(2)} className="step-previous-button">Previous step</button>
+                    <button 
+                        type="button" 
+                        disabled={!data.agreements.personalData || !data.agreements.terms ? true : false}
+                    >
+                        Submit
+                    </button>
             </span>
         </div>
     )
