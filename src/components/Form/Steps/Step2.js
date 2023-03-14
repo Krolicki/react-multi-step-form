@@ -4,6 +4,7 @@ import './Step.css'
 export const Step2 = ({data, setData, setCurrentStep}) => {
     const [validNick, setValidNick] = useState(false)
     const [validYear, setValidYear] = useState(false)
+    const [validDate, setValidDate] = useState(false)
 
     const nicknameRef = useRef()
 
@@ -16,7 +17,17 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     },[])
 
     useEffect(()=>{
-        let day = data.personal.birthDay
+        const day = data.personal.birthDay
+        const month = data.personal.birthMonth
+        const year = data.personal.birthYear
+        const currentDate = new Date()
+        let maxDays
+        if(!isNaN(day) && !isNaN(month) && !isNaN(year)){
+            if(currentDate > new Date(year, month - 1, day))
+                setValidDate(true)
+            else
+                setValidDate(false)
+        }
         if(day === null || day === ""){
             return
         }
@@ -30,22 +41,19 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 return
             }
         }
-        let maxDays
-        let month = data.personal.birthMonth
-        let year = data.personal.birthYear
         if(month !== "" && month !== null){
             if(year !== "" && year !== null){
                 maxDays = getDays(year, month)
             }
             else{
-                maxDays = getDays(new Date().getFullYear(), month)
+                maxDays = getDays(currentDate.getFullYear(), month)
             }
         }
         else if(year !== "" && year !== null){
-            maxDays = getDays(year, new Date().getMonth() + 1)
+            maxDays = getDays(year, currentDate.getMonth() + 1)
         }
         else{
-            maxDays = getDays(new Date().getFullYear(), new Date().getMonth() + 1)
+            maxDays = getDays(currentDate.getFullYear(), currentDate.getMonth() + 1)
         }
         if(day > maxDays){
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: maxDays}}})
@@ -153,7 +161,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         max='31'
                         placeholder=' '
                         required={true}
-                        className={data.personal.birthDay !== "" ? "valid-input" : ""}
+                        className={data.personal.birthDay !== "" ? (!validDate ? "invalid-input" : "valid-input") : ""}
                         value={data.personal.birthDay}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
@@ -171,7 +179,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         max='12'
                         placeholder=' '
                         required={true}
-                        className={data.personal.birthMonth !== "" ? "valid-input" : ""}
+                        className={data.personal.birthMonth !== "" ? (!validDate ? "invalid-input" : "valid-input") : ""}
                         value={data.personal.birthMonth}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
@@ -188,7 +196,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         placeholder=' '
                         required={true}
                         value={data.personal.birthYear}
-                        className={data.personal.birthYear !== "" ? (!validYear ? "invalid-input" : "valid-input") : ""}
+                        className={data.personal.birthYear !== "" ? (!validYear || !validDate ? "invalid-input" : "valid-input") : ""}
                         onKeyDown={(e)=>{
                             if((isNaN(Number(e.key)) || e.code ==='Space') && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.code) )
                                 e.preventDefault()    
@@ -204,7 +212,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 <button type="button" onClick={()=>setCurrentStep(1)} className="step-previous-button">Previous step</button>
                 <button 
                     type="button" 
-                    disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear) 
+                    disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear || !validDate) 
                         ? true : false
                     }
                     onClick={()=>setCurrentStep(3)}
