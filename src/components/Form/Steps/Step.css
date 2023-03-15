@@ -57,7 +57,7 @@
     padding: 10px;
     font-size: 1rem;
     color: white;
-    background-color: var(--green);
+    background-color: var(--violet);
     border: none;
     outline: none;
     cursor: pointer;
@@ -65,7 +65,7 @@
     transition: .2s;
 }
 .step-buttons button:disabled{  
-    background-color: var(--violet);
+    background-color: rgba(84, 68, 255, 0.6);
     cursor:not-allowed;
 }
 .step-previous-button{
@@ -158,7 +158,7 @@ input[type=checkbox]:checked{
     background-color: var(--violet);
 }
 input[type=checkbox]:checked:focus{
-background-color: rgb(51, 190, 255);               
+background-color: rgb(13, 3, 121);              
 }
 input[type=checkbox]:checked::after{
     left: 70%;

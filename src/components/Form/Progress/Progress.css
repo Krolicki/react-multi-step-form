@@ -45,11 +45,17 @@
 }
 [item-text]::after{
     content: attr(item-text);
-    width: 200%;
+    width: 120px;
     position: absolute;
     height: 50px;
     bottom: -60px;
-    left: -50%;
+    left: -40px;
     text-align: center;
+    color: grey;
+}
+.progress-item.completed [item-text]::after{
+    color: var(--green)
+}
+.progress-item.active [item-text]::after{
     color: black;
 }

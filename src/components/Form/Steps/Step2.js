@@ -170,6 +170,10 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         onChange={(e)=>{
                             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: e.target.value}}})
                         }}
+                        onBlur={(e)=>{
+                            if(e.target.value === "0")
+                                setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: ""}}})
+                        }}
                     />
                     <label htmlFor="day">DD</label>
                     <input
@@ -187,6 +191,10 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         }}
                         onChange={(e)=>{
                             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: e.target.value}}})
+                        }}
+                        onBlur={(e)=>{
+                            if(e.target.value === "0")
+                                setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: ""}}})
                         }}
                     />
                     <label htmlFor="month">MM</label>
