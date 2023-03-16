@@ -178,3 +178,14 @@ input[type=checkbox] + label{
 .valid-input{
     border-bottom: 2px solid var(--green) !important;
 }
+.step-summary-text{
+    margin-top: 10px;
+    font-size: 18px;
+    color: rgb(87, 87, 87);
+}
+
+@media (max-width: 700px) {
+    .step{
+        width: 100%;
+    }
+}

@@ -59,3 +59,13 @@
 .progress-item.active [item-text]::after{
     color: black;
 }
+@media (max-width: 700px) {
+    [item-text]::after{
+        font-size: 3.5vw;
+        width: 200%;
+        left: -50%;
+    }
+    .progress{
+        padding-inline: 7vw;
+    }
+}

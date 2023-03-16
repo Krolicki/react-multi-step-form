@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Step1, Step2, Step3, Summary } from './Steps'
 
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(3)
+    const [currentStep, setCurrentStep] = useState(2)
     const [data, setData] = useState({
         account:{
             email: "",
