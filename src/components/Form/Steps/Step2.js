@@ -217,13 +217,13 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                 </span>
             </span>
             <span className='step-buttons'>
-                <button type="button" onClick={()=>setCurrentStep(1)} className="step-previous-button">Previous step</button>
+                <button type="button" onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} className="step-previous-button">Previous step</button>
                 <button 
                     type="button" 
                     disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear || !validDate) 
                         ? true : false
                     }
-                    onClick={()=>setCurrentStep(3)}
+                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})}
                 >
                     Next step
                 </button>

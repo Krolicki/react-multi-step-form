@@ -1,9 +1,7 @@
 import './Form.css'
 import {Progress} from './'
 import { useState } from 'react'
-import { Step1 } from './Steps/Step1'
-import { Step2 } from './Steps/Step2'
-import { Step3 } from './Steps/Step3'
+import { Step1, Step2, Step3, Summary } from './Steps'
 
 export const Form = () => {
     const [currentStep, setCurrentStep] = useState(3)
@@ -30,38 +28,46 @@ export const Form = () => {
     })
 
     const currentStepPage = () => {
-        if(currentStep === 1)
-            return (
-                <Step1 
-                    data={data}
-                    setData={setData}
-                    setCurrentStep={setCurrentStep}
-                />
-            )
-        else if(currentStep === 2)
-            return (
-                <Step2 
-                    data={data}
-                    setData={setData}
-                    setCurrentStep={setCurrentStep}
-                />
-            )
-        else if(currentStep === 3)
-            return (
-                <Step3 
-                    data={data}
-                    setData={setData}
-                    setCurrentStep={setCurrentStep}
-                />
-            )
-        else
-            return (
-                <Step1 
-                    data={data}
-                    setData={setData}
-                    setCurrentStep={setCurrentStep}
-                />
-            )
+        switch(currentStep){
+            case 1:
+                return (
+                    <Step1 
+                        data={data}
+                        setData={setData}
+                        setCurrentStep={setCurrentStep}
+                    />
+                )
+            case 2:
+                return (
+                    <Step2
+                        data={data}
+                        setData={setData}
+                        setCurrentStep={setCurrentStep}
+                    />
+                )
+            case 3:
+                return (
+                    <Step3 
+                        data={data}
+                        setData={setData}
+                        setCurrentStep={setCurrentStep}
+                    />
+                )
+            case 4:
+                return (
+                    <Summary 
+                        data={data}
+                    />
+                )
+            default:
+                return (
+                    <Step1 
+                        data={data}
+                        setData={setData}
+                        setCurrentStep={setCurrentStep}
+                    />
+                )
+        }
     }
 
     return(

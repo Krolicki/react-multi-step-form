@@ -76,7 +76,7 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
             <span className='step-buttons'>
                 <button 
                     type="button" 
-                    onClick={()=>setCurrentStep(2)} 
+                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})} 
                     disabled={!validEmail || !validPassword || !validConfirmPassword ? true : false}
                 >
                     Next step
