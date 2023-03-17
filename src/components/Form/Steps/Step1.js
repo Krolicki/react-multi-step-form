@@ -12,11 +12,7 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
     const PASSREGEX = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/;
 
     useEffect(()=>{
-        setTimeout(()=>{
-            emailRef.current.blur()
             emailRef.current.focus()
-        },2000)
-            
     },[])
 
     useEffect(()=>{
