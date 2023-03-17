@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './Step.css'
 
 export const Step2 = ({data, setData, setCurrentStep}) => {
@@ -7,6 +8,8 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     const [validDate, setValidDate] = useState(false)
 
     const nicknameRef = useRef()
+
+    const { t } = useTranslation()
 
     const getDays = (year, month) => {
         return new Date(year, month, 0).getDate()
@@ -113,7 +116,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
 
     return(
         <div className='step'>
-            <span className='step-title'>Personal informations</span>
+            <span className='step-title'>{t('step2.title')}</span>
             <input
                 type='text'
                 name='nickname'
@@ -126,7 +129,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, nickname: e.target.value}}})
                 }}
             />
-            <label htmlFor="nickname">Nickname</label>
+            <label htmlFor="nickname">{t('step2.nickname-label')}</label>
             <input
                 type='text'
                 name='name'
@@ -138,7 +141,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, name: e.target.value}}})
                 }}
             />
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{t('step2.name-label')}</label>
             <input
                 type='text'
                 name='lastname'
@@ -150,9 +153,9 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                     setData((prevData)=> {return{...prevData, personal: {...prevData.personal, lastname: e.target.value}}})
                 }}
             />
-            <label htmlFor="lastname">Lastname</label>
+            <label htmlFor="lastname">{t('step2.lastname-label')}</label>
             <span className='step-birth-date'>
-                <p>Birth date</p>
+                <p>{t('step2.birth-date-title')}</p>
                 <span>
                     <input
                         type='number'
@@ -175,7 +178,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                                 setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: ""}}})
                         }}
                     />
-                    <label htmlFor="day">DD</label>
+                    <label htmlFor="day">{t('step2.day-label')}</label>
                     <input
                         type='number'
                         name='month'
@@ -197,7 +200,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                                 setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: ""}}})
                         }}
                     />
-                    <label htmlFor="month">MM</label>
+                    <label htmlFor="month">{t('step2.month-label')}</label>
                     <input
                         type='number'
                         name='year'
@@ -213,11 +216,16 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthYear: e.target.value}}})
                         }}
                     />
-                    <label htmlFor="year">YYYY</label>
+                    <label htmlFor="year">{t('step2.year-label')}</label>
                 </span>
             </span>
             <span className='step-buttons'>
-                <button type="button" onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} className="step-previous-button">Previous step</button>
+                <button type="button" 
+                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} 
+                    className="step-previous-button"
+                >
+                    {t('buttons.previous-step')}
+                </button>
                 <button 
                     type="button" 
                     disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear || !validDate) 
@@ -225,7 +233,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                     }
                     onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})}
                 >
-                    Next step
+                    {t('buttons.next-step')}
                 </button>
             </span>
         </div>

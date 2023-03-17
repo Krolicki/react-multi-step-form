@@ -1,0 +1,34 @@
+{
+    "step1":{
+        "title": "Konfiguracja konta",
+        "mail-label": "Adres Email",
+        "password-label": "Hasło",
+        "confirm-password-label": "Powtórz hasło"
+    },
+    "step2":{
+        "title": "Informacje osobiste",
+        "nickname-label": "Pseudonim",
+        "name-label": "Imię",
+        "lastname-label": "Nazwisko",
+        "birth-date-title": "Data urodzenia",
+        "day-label": "DD",
+        "month-label": "MM",
+        "year-label": "RRRR"
+    },
+    "step3":{
+        "title": "Zgody",
+        "terms": "Przeczytałem i akceptuję warunki korzystania z serwisu",
+        "personalData": "Wyrażam zgodę na przetwarzanie moich danych osobowych niezbędnych do rejestracji",
+        "marketing": "(opcjonalne) Wyrażam zgodę na przetwarzanie moich danych osobowych w celach marketingowych"
+    },
+    "summary":{
+        "title": "Witaj",
+        "info": "Możesz się teraz zalogować"
+    },
+    "buttons":{
+        "next-step": "Następny krok",
+        "previous-step": "Poprzedni krok",
+        "submit": "Prześlij",
+        "log-in": "Zaloguj się"
+    }
+}

@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import './Step.css'
 
 export const Step3 = ({data, setData, setCurrentStep}) => {
     const termsRef = useRef()
+
+    const { t } = useTranslation()
 
     useEffect(()=>{
         termsRef.current.focus()
@@ -10,7 +13,7 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
 
     return(
         <div className='step'>
-            <span className='step-title'>Agreements</span>
+            <span className='step-title'>{t('step3.title')}</span>
             <span className='step-checkbox'>
                 <input
                     type='checkbox'
@@ -23,7 +26,7 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                         }) 
                     }}
                 />
-                <label htmlFor='terms-consent'>I have read and accept the terms of service</label>
+                <label htmlFor='terms-consent'>{t('step3.terms')}</label>
             </span>
             <span className='step-checkbox'>
                 <input
@@ -36,7 +39,7 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                         }) 
                     }}
                 />
-                <label htmlFor='data-consent'>I consent to the processing of my personal data necessary for registration</label>
+                <label htmlFor='data-consent'>{t('step3.personalData')}</label>
             </span>
             <span className='step-checkbox'>
                 <input
@@ -49,10 +52,15 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                         }) 
                     }}
                 />
-                <label htmlFor='marketing-consent'>(optional) I consent to the processing of my personal data for marketing purposes</label>
+                <label htmlFor='marketing-consent'>{t('step3.marketing')}</label>
             </span>
             <span className='step-buttons'>
-                    <button type="button" onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} className="step-previous-button">Previous step</button>
+                    <button type="button" 
+                        onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} 
+                        className="step-previous-button"
+                    >
+                        {t('buttons.previous-step')}
+                    </button>
                     <button 
                         type="button" 
                         disabled={!data.agreements.personalData || 
@@ -61,9 +69,9 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                                   Object.values(data.account).some((el) => { return el === ""})
                                   ? true : false
                                  }
-                        onClick={()=>setCurrentStep(4)}
+                        onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})}
                     >
-                        Submit
+                        {t('buttons.submit')}
                     </button>
             </span>
         </div>

@@ -1,0 +1,34 @@
+{
+    "step1":{
+        "title": "Account setup",
+        "mail-label": "Email Address",
+        "password-label": "Password",
+        "confirm-password-label": "Confirm Password"
+    },
+    "step2":{
+        "title": "Personal informations",
+        "nickname-label": "Nickname",
+        "name-label": "Name",
+        "lastname-label": "Lastname",
+        "birth-date-title": "Birth date",
+        "day-label": "DD",
+        "month-label": "MM",
+        "year-label": "YYYY"
+    },
+    "step3":{
+        "title": "Agreements",
+        "terms": "I have read and accept the terms of service",
+        "personalData": "I consent to the processing of my personal data necessary for registration",
+        "marketing": "(optional) I consent to the processing of my personal data for marketing purposes"
+    },
+    "summary":{
+        "title": "Welcome",
+        "info": "You can now log in"
+    },
+    "buttons":{
+        "next-step": "Next step",
+        "previous-step": "Previous step",
+        "submit": "Submit",
+        "log-in": "Log in"
+    }
+}
