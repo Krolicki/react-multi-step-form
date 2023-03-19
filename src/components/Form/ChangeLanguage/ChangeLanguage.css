@@ -1,0 +1,37 @@
+.change-language{
+    position: absolute;
+    top: 2vw;
+    right: 2vw;
+    width: 70px;
+    height: 30px;
+    background: var(--grey);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 5px;
+    gap: 10px;
+}
+.change-language span{
+    line-height: 0;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(170, 170, 170);
+    cursor: pointer;
+}
+.change-language:first-child:after{
+    content: "";
+    position: absolute;
+    top: 20%;
+    right: calc(50% - 1px);
+    height: 60%;
+    width: 1px;
+    background-color: black;
+}
+.active-language{
+    color: black !important;
+}

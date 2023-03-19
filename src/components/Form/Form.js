@@ -1,5 +1,5 @@
 import './Form.css'
-import {Progress} from './'
+import {ChangeLanguage, Progress} from './'
 import { useState } from 'react'
 import { Step1, Step2, Step3, Summary } from './Steps'
 
@@ -72,6 +72,7 @@ export const Form = () => {
 
     return(
         <div className='form-container'>
+            <ChangeLanguage />
             <Progress currentStep={currentStep}/>
             <div className='step-container'>
                 {currentStepPage()}
