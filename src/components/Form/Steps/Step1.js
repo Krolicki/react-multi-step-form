@@ -7,6 +7,7 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
     const [validPassword, setValidPassword] = useState(false)
     const [validConfirmPassword, setValidConfirmPassword] = useState(false)
 
+    const stepRef = useRef()
     const emailRef = useRef()
 
     const EMAILREGEX = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/
@@ -16,6 +17,7 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
 
     useEffect(()=>{
         emailRef.current.focus()
+        stepRef.current.classList.add('show-step')
     },[])
 
     useEffect(()=>{
@@ -37,7 +39,7 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
 
 
     return(
-        <div className='step'>
+        <div className='step' ref={stepRef}>
             <span className='step-title'>{t('step1.title')}</span>
             <input
                 type='email'
@@ -79,7 +81,12 @@ export const Step1 = ({data, setData, setCurrentStep}) => {
             <span className='step-buttons'>
                 <button 
                     type="button" 
-                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})} 
+                    onClick={()=>{
+                        stepRef.current.classList.remove('show-step')
+                        setTimeout(()=>{
+                            setCurrentStep((prevStep)=> {return prevStep+1})
+                        },300)
+                    }} 
                     disabled={!validEmail || !validPassword || !validConfirmPassword ? true : false}
                 >
                     {t('buttons.next-step')}

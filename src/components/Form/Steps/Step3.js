@@ -3,16 +3,18 @@ import { useTranslation } from 'react-i18next'
 import './Step.css'
 
 export const Step3 = ({data, setData, setCurrentStep}) => {
+    const stepRef = useRef()
     const termsRef = useRef()
 
     const { t } = useTranslation()
 
     useEffect(()=>{
+        stepRef.current.classList.add('show-step')
         termsRef.current.focus()
     },[])
 
     return(
-        <div className='step'>
+        <div className='step' ref={stepRef}>
             <span className='step-title'>{t('step3.title')}</span>
             <span className='step-checkbox'>
                 <input
@@ -56,7 +58,12 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
             </span>
             <span className='step-buttons'>
                     <button type="button" 
-                        onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} 
+                        onClick={()=>{
+                            stepRef.current.classList.remove('show-step')
+                            setTimeout(()=>{
+                                setCurrentStep((prevStep)=> {return prevStep-1})
+                            },300)
+                        }} 
                         className="step-previous-button"
                     >
                         {t('buttons.previous-step')}
@@ -69,7 +76,12 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                                   Object.values(data.account).some((el) => { return el === ""})
                                   ? true : false
                                  }
-                        onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})}
+                        onClick={()=>{
+                            stepRef.current.classList.remove('show-step')
+                            setTimeout(()=>{
+                                setCurrentStep((prevStep)=> {return prevStep+1})
+                            },300)
+                        }}
                     >
                         {t('buttons.submit')}
                     </button>

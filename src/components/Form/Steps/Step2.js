@@ -7,6 +7,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     const [validYear, setValidYear] = useState(false)
     const [validDate, setValidDate] = useState(false)
 
+    const stepRef = useRef()
     const nicknameRef = useRef()
 
     const { t } = useTranslation()
@@ -16,6 +17,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     }
 
     useEffect(()=>{
+        stepRef.current.classList.add('show-step')
         nicknameRef.current.focus()
     },[])
 
@@ -115,7 +117,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
     },[data.personal.nickname])
 
     return(
-        <div className='step'>
+        <div className='step' ref={stepRef}>
             <span className='step-title'>{t('step2.title')}</span>
             <input
                 type='text'
@@ -221,7 +223,12 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             </span>
             <span className='step-buttons'>
                 <button type="button" 
-                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep-1})} 
+                    onClick={()=>{
+                        stepRef.current.classList.remove('show-step')
+                        setTimeout(()=>{
+                            setCurrentStep((prevStep)=> {return prevStep-1})
+                        },300)
+                    }} 
                     className="step-previous-button"
                 >
                     {t('buttons.previous-step')}
@@ -231,7 +238,12 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                     disabled={(Object.values(data.personal).some((el) => { return el === ""}) || !validNick || !validYear || !validDate) 
                         ? true : false
                     }
-                    onClick={()=>setCurrentStep((prevStep)=> {return prevStep+1})}
+                    onClick={()=>{
+                        stepRef.current.classList.remove('show-step')
+                        setTimeout(()=>{
+                            setCurrentStep((prevStep)=> {return prevStep+1})
+                        },300)
+                    }}
                 >
                     {t('buttons.next-step')}
                 </button>

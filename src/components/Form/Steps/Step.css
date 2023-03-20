@@ -2,6 +2,13 @@
     width: calc(50% - 40px);
     position: relative;
     padding-bottom: 60px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+}
+.show-step{
+    opacity: 1;
+    pointer-events: unset;
 }
 .step-title{
     font-size: 1.3rem;
