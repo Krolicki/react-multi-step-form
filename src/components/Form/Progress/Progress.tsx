@@ -1,7 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import './Progress.css'
 
-export const Progress = ({currentStep}) => {
+type ProgressProps = {
+    currentStep: number
+}
+
+export const Progress = ({ currentStep } : ProgressProps ) => {
     const {t} = useTranslation()
 
     return(

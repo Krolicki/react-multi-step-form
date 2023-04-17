@@ -7,7 +7,7 @@ export const ChangeLanguage = () => {
 
     const {i18n} = useTranslation()    
 
-    const handleChangeLanguage = (lang) => {
+    const handleChangeLanguage = (lang : string) => {
         if(lang !== currentLanguage){
             i18n.changeLanguage(lang)
             setCurrentLanguage(lang)
@@ -16,7 +16,7 @@ export const ChangeLanguage = () => {
 
     useEffect(()=>{
         setCurrentLanguage(i18n.resolvedLanguage)
-    },[])
+    },[i18n.resolvedLanguage])
 
     return(
         <div className='change-language'>
