@@ -5,27 +5,33 @@ import { Step1, Step2, Step3, Summary } from './Steps'
 
 export type FormDataType = {
     account: {
-        email: string,
-        password: string,
+        email: string
+        password: string
         confirmPassword: string
     },
     personal: {
-        nickname: string,
-        name: string,
-        lastname: string,
-        birthDay: string,
-        birthMonth: string,
-        birthYear: string
+        nickname: string
+        name: string
+        lastname: string
+        birthDay: any
+        birthMonth: any
+        birthYear: any
     },
     agreements: {
-        terms: boolean,
-        personalData: boolean,
+        terms: boolean
+        personalData: boolean
         marketing: boolean
     }
 }
 
+export type StepProps = {
+    data: FormDataType
+    setData: React.Dispatch<React.SetStateAction<FormDataType>>
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+}
+
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(1)
+    const [currentStep, setCurrentStep] = useState(2)
     const [data, setData] = useState<FormDataType>({
         account: {
             email: "",

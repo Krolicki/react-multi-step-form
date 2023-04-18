@@ -1,24 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './Step.css'
+import { StepProps } from '../Form'
 
-export const Step2 = ({data, setData, setCurrentStep}) => {
+export const Step2 = ({data, setData, setCurrentStep} : StepProps) => {
     const [validNick, setValidNick] = useState(false)
     const [validYear, setValidYear] = useState(false)
     const [validDate, setValidDate] = useState(false)
 
-    const stepRef = useRef()
-    const nicknameRef = useRef()
+    const stepRef = useRef<HTMLDivElement>(null)
+    const nicknameRef = useRef<HTMLInputElement>(null)
 
     const { t } = useTranslation()
 
-    const getDays = (year, month) => {
+    const getDays = (year : number, month : number) => {
         return new Date(year, month, 0).getDate()
     }
 
     useEffect(()=>{
-        stepRef.current.classList.add('show-step')
-        nicknameRef.current.focus()
+        nicknameRef.current?.focus()
+        stepRef.current?.classList.add('show-step')
     },[])
 
     useEffect(()=>{
@@ -26,9 +27,9 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
         const month = data.personal.birthMonth
         const year = data.personal.birthYear
         const currentDate = new Date()
-        let maxDays
+        let maxDays : number
         if(!isNaN(day) && !isNaN(month) && !isNaN(year)){
-            if(currentDate > new Date(year, month - 1, day))
+            if(currentDate > new Date(year as number, month as number - 1, day as number))
                 setValidDate(true)
             else
                 setValidDate(false)
@@ -40,11 +41,9 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: ""}}})
             return
         }
-        if(day < 1){
-            if(!day.length === 1){
-                setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: 1}}})
-                return
-            }
+        if(day < 1 && day.length !== 1){
+            setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: 1}}})
+            return
         }
         if(month !== "" && month !== null){
             if(year !== "" && year !== null){
@@ -64,7 +63,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthDay: maxDays}}})
             return
         }
-    },[data.personal.birthDay, data.personal.birthMonth, data.personal.birthYear])
+    },[data.personal.birthDay, data.personal.birthMonth, data.personal.birthYear, setData])
     
     useEffect(()=>{
         let month = data.personal.birthMonth
@@ -75,17 +74,15 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: ""}}})
             return
         }
-        if(month < 1){
-            if(!month.length === 1){
-                setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: 1}}})
-                return
-            }
+        if(month < 1 && month.length !== 1){
+            setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: 1}}})
+            return
         }
         if(month > 12){
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthMonth: 12}}})
             return
         }
-    },[data.personal.birthMonth])
+    },[data.personal.birthMonth, setData])
 
     useEffect(()=>{
         const year = data.personal.birthYear
@@ -106,10 +103,10 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             setData((prevData)=> {return{...prevData, personal: {...prevData.personal, birthYear: currentYear}}})
             return
         }
-    },[data.personal.birthYear])
+    },[data.personal.birthYear, setData])
 
     useEffect(()=>{
-        //check if this nick is available
+        //optional: check if this nick is available
         if(data.personal.nickname.length >= 4)
             setValidNick(true)
         else
@@ -224,7 +221,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
             <span className='step-buttons'>
                 <button type="button" 
                     onClick={()=>{
-                        stepRef.current.classList.remove('show-step')
+                        stepRef.current?.classList.remove('show-step')
                         setTimeout(()=>{
                             setCurrentStep((prevStep)=> {return prevStep-1})
                         },300)
@@ -239,7 +236,7 @@ export const Step2 = ({data, setData, setCurrentStep}) => {
                         ? true : false
                     }
                     onClick={()=>{
-                        stepRef.current.classList.remove('show-step')
+                        stepRef.current?.classList.remove('show-step')
                         setTimeout(()=>{
                             setCurrentStep((prevStep)=> {return prevStep+1})
                         },300)
