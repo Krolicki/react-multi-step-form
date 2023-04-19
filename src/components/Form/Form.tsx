@@ -31,7 +31,7 @@ export type StepProps = {
 }
 
 export const Form = () => {
-    const [currentStep, setCurrentStep] = useState(2)
+    const [currentStep, setCurrentStep] = useState(1)
     const [data, setData] = useState<FormDataType>({
         account: {
             email: "",

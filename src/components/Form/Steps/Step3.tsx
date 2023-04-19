@@ -1,16 +1,17 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import './Step.css'
+import { StepProps } from '../Form'
 
-export const Step3 = ({data, setData, setCurrentStep}) => {
-    const stepRef = useRef()
-    const termsRef = useRef()
+export const Step3 = ({data, setData, setCurrentStep} : StepProps) => {
+    const stepRef = useRef<HTMLDivElement>(null)
+    const termsRef = useRef<HTMLInputElement>(null)
 
     const { t } = useTranslation()
 
     useEffect(()=>{
-        stepRef.current.classList.add('show-step')
-        termsRef.current.focus()
+        stepRef.current?.classList.add('show-step')
+        termsRef.current?.focus()
     },[])
 
     return(
@@ -59,7 +60,7 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
             <span className='step-buttons'>
                     <button type="button" 
                         onClick={()=>{
-                            stepRef.current.classList.remove('show-step')
+                            stepRef.current?.classList.remove('show-step')
                             setTimeout(()=>{
                                 setCurrentStep((prevStep)=> {return prevStep-1})
                             },300)
@@ -77,7 +78,7 @@ export const Step3 = ({data, setData, setCurrentStep}) => {
                                   ? true : false
                                  }
                         onClick={()=>{
-                            stepRef.current.classList.remove('show-step')
+                            stepRef.current?.classList.remove('show-step')
                             setTimeout(()=>{
                                 setCurrentStep((prevStep)=> {return prevStep+1})
                             },300)

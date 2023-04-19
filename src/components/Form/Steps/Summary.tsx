@@ -1,13 +1,18 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import './Step.css'
+import { FormDataType } from '../Form'
 
-export const Summary = ({data}) => {
-    const stepRef = useRef()
+type SummaryProps = {
+    data: FormDataType
+}
+
+export const Summary = ({data} : SummaryProps) => {
+    const stepRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation()
 
     useEffect(()=>{
-        stepRef.current.classList.add('show-step')
+        stepRef.current?.classList.add('show-step')
     },[])
 
     return (
