@@ -102,7 +102,7 @@ export const Form = () => {
             <Progress currentStep={currentStep} />
             <div className='step-container'>
                 {currentStepPage()}
-                <img src="https://source.unsplash.com/random/600x600?landscape" alt="random" />
+                <img src="https://picsum.photos/600/600?nature&blue" alt="random image from picsum" />
             </div>
         </div>
     )
